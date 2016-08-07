@@ -1,7 +1,15 @@
 # 轻松理解 Android Binder
-在 Android 系统中，Binder 起着非常重要的作用，它是整个系统 IPC 的基石。网上已经有很多文章讲述 Binder 的原理，有的讲的比较浅显，没有触及到关键，有的讲的太过于深入底层，难以理解，本文会比较全面，以一个比较轻松的方式去讲述 Binder 在 Android 中是如何使用的。理解 Binder 的基本原理，对学习 Android 也有很大的帮助，很多问题也能够得到解释，例如 ContentProvider 中的 CRUD 是否是线程安全的？又例如在使用 AIDL 的时候，在 Service 中实现的接口是否是线程安全的？
+在 Android 系统中，Binder 起着非常重要的作用，它是整个系统 IPC 的基石。网上已经有很多文章讲述 Binder 的原理，有的讲的比较浅显，没有触及到关键，有的讲的太过于深入底层，难以理解，本文会比较全面，以一个比较轻松的方式，从面到点，大处着眼，小处着手的形式去讲述 Binder 在 Android 中是如何使用的。理解 Binder 的基本原理，对学习 Android 也有很大的帮助，很多问题也能够得到解释，例如 ContentProvider 中的 CRUD 是否是线程安全的？又例如在使用 AIDL 的时候，在 Service 中实现的接口是否是线程安全的？
+
+本文分为以下几个部分去介绍
+
+* Android 整体架构
+* Binder IPC 的架构
+* 手动实现 Binder IPC
+* 使用 AIDL 实现 Binder IPC
 
 如果觉得文章太长，可以先只看「小结」部分，小结会把每个部分的重点总结出来，有些部分可以跳过。
+
 
 ##Android 整体架构
 不识庐山真面目，只缘身在此山中，所以我们先来大概看下 Android 这座大山的整体轮廓。我们先从 Android 的整体架构来看看 Binder 是处于什么地位，这张图引自 Android 项目开源网站：https://source.android.com
