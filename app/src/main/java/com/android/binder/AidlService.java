@@ -13,16 +13,6 @@ public class AidlService extends Service {
 
         @Override
         public int report(String values, int type) throws RemoteException {
-            int processId = Process.myPid();
-            int threadId = Process.myTid();
-
-            Log.i("IReporter", "ReportService: report begin, process is " + processId + ", thread is " + threadId);
-            try {
-                Thread.sleep(30 * 1000);
-            } catch (InterruptedException e) {
-            }
-            Log.i("IReporter", "ReportService: report finish, process is " + processId + ", thread is " + threadId);
-
             return type;
         }
     }

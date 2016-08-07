@@ -12,7 +12,11 @@ public class BinderService extends Service {
 
     public static final int REPORT_CODE = 0;
 
-    public final class Reporter extends Binder {
+    public interface IReporter {
+        int report(String values, int type);
+    }
+
+    public final class Reporter extends Binder implements IReporter {
         @Override
         protected boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
             switch (code) {
@@ -28,6 +32,15 @@ public class BinderService extends Service {
             }
             return super.onTransact(code, data, reply, flags);
         }
+
+        @Override
+        public int report(String values, int type) {
+            try {
+                Thread.sleep(30 * 1000);
+            } catch (InterruptedException e) {
+            }
+            return type;
+        }
     }
 
     private Reporter mReporter;
@@ -39,13 +52,5 @@ public class BinderService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return mReporter;
-    }
-
-    private int report(String values, int type) {
-        try {
-            Thread.sleep(30 * 1000);
-        } catch (InterruptedException e) {
-        }
-        return type;
     }
 }

@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             mReporterBind.transact(BinderService.REPORT_CODE, data, reply, 0);
                             reply.enforceInterface("reporter");
                             int result = reply.readInt();
+                            data.recycle();
+                            reply.recycle();
                             Log.i("IReporter", "result is " + result);
                         } catch (RemoteException e) {
                         }
